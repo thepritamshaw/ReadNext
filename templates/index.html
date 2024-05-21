@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Book Recommender</title>
+	<link href="{% static 'css/nav.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'css/top-books.css' %}" rel="stylesheet">
+</head>
+<body>
+	<input type="checkbox" id="toggle">
+	<nav>
+		<div class="titlecontainer">
+			<a href="/"><h1>Book Recommender</h1></a>
+			<label for="toggle" class="navbartoggler">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</label>
+		</div>
+		<div class="nav-and-sign">
+			<ul class="nav-menu">
+				<li class="nav-menu-item"><a href="/">Home</a></li>
+				<li class="nav-menu-item"><a href="#">Reccomendation</a></li>
+				<li class="nav-menu-item"><a href="#">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<section class="top-books">
+			<h2>Top Books</h2>
+			<div class="book-list">
+				{% for book in books %}
+					<div class="book">
+						<img src="{{ book.Image_URL_M }}" alt="{{ book.Book_Title }}">
+						<div class="book-details">
+							<h3>{{ forloop.counter }}. {{ book.Book_Title }}</h3>
+							<p>{{ book.Book_Author }}</p>
+							<p>⭐ {{ book.avg_rating|floatformat:1 }} | {{ book.num_ratings }} ratings</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	</div>
+</body>
+</html>

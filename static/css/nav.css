@@ -1,0 +1,150 @@
+nav {
+	display: flex;
+	padding: 25px 5% 20px 5%;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #fff;
+}
+
+.titlecontainer {
+	display: flex;
+	width: 545px;
+}
+
+.nav-and-sign {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	color: #fff;
+}
+
+.nav-menu {
+	display: inline-flex;
+	background-color: #fff;
+	padding: 0 5%;
+}
+
+.nav-menu-item {
+	padding: 12px 15px;
+}
+
+.nav-menu-item a, .dropdown {
+	color: #183b56;
+	position: relative;
+}
+
+.nav-menu-item a:hover, .dropdown:hover {
+	color: #2294ed;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.white-button-blue-text {
+	padding: 12px 24px;
+	color: #183b56;
+	border: 1px solid #b9cde4;
+	border-radius: 4px;
+	margin: 0 10px;
+	font-weight: 700;
+}
+
+.white-button-blue-text:hover {
+	border: 1px solid #2294ed;
+	color: #2294ed;
+}
+
+.blue-button-white-text {
+	background-color: #2294ed;
+	border: 1px solid #2294ed;
+	border-radius: 4px;
+	padding: 12px 24px;
+	font-weight: 700;
+	color: #fff;
+}
+
+.blue-button-white-text:hover {
+	background-color: #0061ad;
+	border: 1px solid #0061ad;
+}
+
+@media (max-width : 1100px) {
+	nav {
+		display: flex;
+	}
+
+	.titlecontainer {
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	.nav-and-sign, .nav-menu {
+		display: grid;
+		position: absolute;
+		width: 100%;
+		top: 0px;
+		left: 0;
+		transform: translateY(-100%);
+		z-index: -1;
+		align-items: left;
+	}
+
+	.navbartoggler {
+		display: inline-grid !important;
+		margin: 5px 0 5px 0;
+	}
+
+	.bar {
+		width: 23px;
+		height: 3px;
+		margin-bottom: 2px;
+		background: #183b56;
+		border-radius: 20%;
+		transition: .4s;
+	}
+
+	.bar:nth-child(1), .bar:nth-child(2) {
+		margin-bottom: 1px;
+	}
+
+	.nav-menu-item {
+		margin: 0;
+	}
+	
+	.dropdown-menu {
+		margin-top: -40px;
+	}
+}
+
+#toggle {
+	display: none;
+}
+
+input:checked~nav ul {
+	transform: translateY(0);
+	z-index: 2;
+	top: 78px;
+}
+
+input:checked~nav .nav-and-sign {
+	transform: translateY(0);
+	z-index: 0;
+}
+
+input:checked~nav .titlecontainer .navbartoggler {
+	margin-top: 12px;
+}
+
+input:checked~nav .titlecontainer .navbartoggler .bar:nth-child(1) {
+	position: absolute;
+	transform: rotate(45deg);
+}
+
+input:checked~nav .titlecontainer .navbartoggler .bar:nth-child(2) {
+	display: none;
+}
+
+input:checked~nav .titlecontainer .navbartoggler .bar:nth-child(3) {
+	transform: rotate(-45deg);
+}
