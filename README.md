@@ -9,6 +9,12 @@ ReadNext is a sophisticated book recommendation system that leverages user ratin
 - **Personalized Recommendations:** Offers book suggestions based on similarity scores derived from user ratings.
 - **Fallback Recommendations:** Provides author and publisher recommendations if a queried book is not in the top-rated list.
 
+## Related Projects
+
+### Book Recommender System
+
+The [Book Recommender System](https://github.com/thepritamshaw/ML/tree/master/Book_Recommender_System) project, part of my ML repository, is where the calculations and initial data processing for ReadNext's recommendation engine were performed. It includes detailed Jupyter Notebook files with analysis and the original datasets used for training.
+
 ## Data Sources
 
 - The dataset is sourced from [Kaggle's Book Recommendation Dataset](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset), which includes `users.csv`, `books.csv`, and `ratings.csv`.
