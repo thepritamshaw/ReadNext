@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 {% load custom_filters %}
 <!DOCTYPE html>
@@ -5,19 +6,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Book Recommendations</title>
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	{% block title %}
+	<title>Recommendations- ReadNext</title>
+	{% endblock %}
+	{% block style %}
 	<link rel="stylesheet" href="{% static 'css/recommendation.css' %}">
+	{% endblock %}
 </head>
 <body>
-	<div class="container">
-		<div class="search-bar">
-			<form action="{% url 'recommendation' %}" method="get">
-				<input type="text" name="q" placeholder="Search for a book" value="{% if query %}{{ query }}{% endif %}" class="search-input">
-				<button class="blue-button-white-text" type="submit">Search</button>
-			</form>
-		</div>
-	
+	{% block body %}
+	<div class="container">	
 		<div class="recommendations">
 			{% for section, books in recommendations.items %}
 				{% if books %}
@@ -25,28 +23,29 @@
 					<h2>{{ section|capfirst|replace:"_, " }}</h2>
 					<div class="books">
 						{% for book in books %}
-							<div class="book">
+						<div class="book">
 								<img src="{{ book.Image_URL_M }}" alt="{{ book.Book_Title }}">
 								<div class="book-details">
-									<h3>{{ book.Book_Title }}</h3>
-									<p>Author: {{ book.Book_Author }}</p>
-									<p>Publisher: {{ book.Publisher }}</p>
-									<p>⭐ {{ book.avg_rating }} | {{ book.num_ratings }} ratings</p>
+									<h3>{{ book.Book_Title|truncate_chars:50 }}</h3>
+									<p>Author: {{ book.Book_Author|truncate_chars:30 }}</p>
+									<p>Publisher: {{ book.Publisher|truncate_chars:40 }}</p>
+									<p>⭐ {{ book.avg_rating|floatformat:1 }} | {{ book.num_ratings|roundup }} ratings</p>
 								</div>
 							</div>
-						{% endfor %}
+							{% endfor %}
 					</div>
 				</div>
 				{% endif %}
-			{% endfor %}
+				{% endfor %}
 		</div>
 		<br><br>
-		<script>
-			document.querySelectorAll('.books').forEach(list => {
-				list.style.overflowY = 'scroll';
-				list.style.maxHeight = '300px';
-			});
-		</script>
 	</div>
+	<script>
+		document.querySelectorAll('.books').forEach(list => {
+			list.style.overflowY = 'scroll';
+			list.style.maxHeight = '300px';
+		});
+	</script>
+	{% endblock %}
 </body>
 </html>

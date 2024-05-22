@@ -1,4 +1,5 @@
 from django import template
+import math
 
 register = template.Library()
 
@@ -12,3 +13,7 @@ def truncate_chars(value, max_length):
 def replace(value, args):
     old, new = args.split(',')
     return value.replace(old, new)
+
+@register.filter(name='roundup')
+def roundup(value):
+    return math.ceil(value)

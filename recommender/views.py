@@ -9,9 +9,6 @@ def index(request):
 	books = df.to_dict('records')
 	return render(request, 'index.html', {'books': books})
 
-# def recommendation(request):
-# 	return render(request, 'recommendation.html')
-
 pivot_table = pd.read_csv('data/pivot_table.csv', index_col='Book-Title')
 result = pd.read_csv('data/result.csv')
 with open('data/similar_items.json', 'r') as f:
@@ -68,6 +65,7 @@ def recommend_ui(book_name, pt, result, similar_items_dict):
 		close_matches_result = difflib.get_close_matches(book_name, result['Book_Title'], n=1, cutoff=0.6)
 
 		recommendations['best_matches'] = [get_book_details(title, result) for title in best_matches[:5]]
+		recommendations['best_matches'] = [get_book_details(title, result) for title in close_matches_result[:5]]
 
 		if close_matches_result:
 			best_match_book = close_matches_result[0]

@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% block title %}
+	{% endblock %}
+	<link href="{% static 'css/nav.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	{% block style %}
+	{% endblock %}
+</head>
+<body>
+	<nav>
+		<div class="titlecontainer">
+			<a href="/"><h1>ReadNext</h1></a>
+				<div class="search-bar">
+					<form action="{% url 'recommendation' %}" method="get" style="display: flex; width: 100%;">
+						<input type="text" name="q" placeholder="Search for a book" value="{% if query %}{{ query }}{% endif %}" class="search-input">
+						<button class="blue-button-white-text" type="submit"><i class="fas fa-search"></i></button>
+					</form>
+				</div>
+		</div>
+	</nav>
+	{% block body %}
+	{% endblock %}
+</body>
+</html>
